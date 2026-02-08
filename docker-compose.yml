@@ -11,14 +11,13 @@ services:
     volumes:
       - pgData:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5433:5432
     deploy:
       replicas: 1
     networks:
       - bootcamp_network
     healthcheck:
-      test:
-        ["CMD-SHELL", "sh -c 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}'"]
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}'" ]
       interval: 10s
       timeout: 3s
       retries: 3
